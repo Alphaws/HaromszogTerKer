@@ -8,11 +8,11 @@ namespace HaromszogTerKer
         {
             int a = 3;
             int b = 4;
-            int c = 20;
+            int c = 5;
 
-            if(!haromOldalEllenorzese(a, b, c))
+            if(!haromOldalPozitiv(a, b, c) || !SzerkeszthetoHaromSzog(a,b,c))
             {
-                throw new ArgumentException ("Az oldal csak pozitív lehet");
+                throw new ArgumentException ($"Az oldal legyen pozitív és a hsz. szerkeszthető!");
                 //ha ide jutunk, megakad a prg. futása
             }
 
@@ -24,7 +24,12 @@ namespace HaromszogTerKer
             Megjelenites(adat);
         }
 
-        private static bool haromOldalEllenorzese(int a, int b, int c)
+        static bool SzerkeszthetoHaromSzog(int a, int b, int c)
+        {
+            return a + b > c && a + c > b && b + c > a;
+        }
+
+        private static bool haromOldalPozitiv(int a, int b, int c)
         {
             bool pozitivA = PozitivSzam(a);
             bool pozitivB = PozitivSzam(b);
