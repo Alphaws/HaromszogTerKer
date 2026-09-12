@@ -20,8 +20,12 @@ namespace HaromszogTerKer
             double terulet = Terulet(a, b, c);
 
             string adat = $"A {a},{b},{c} oldalú hsz.\n";
-            adat += $"\tterülete: {terulet}\n\tkerülete: {kerulet}";
+            adat += $"\tterülete: {terulet}\n\tkerülete: {kerulet}\n";
             Megjelenites(adat);
+
+            int alap = 12;
+            int mag = 13;
+            Megjelenites($"alap: {alap}, mag.: {mag}, ter.: {Terulet(alap, mag)}\n");
         }
 
         static bool SzerkeszthetoHaromSzog(int a, int b, int c)
@@ -48,10 +52,19 @@ namespace HaromszogTerKer
             Console.Write(adat);
         }
 
+        /* Terulet függvény túlterhelések:
+         * Terulet(int, int, int)
+         * Terulet(int, int)
+         */
         private static double Terulet(int a, int b, int c)
         {
             int s = Kerulet(a, b, c) / 2;
             return Math.Sqrt(s * (s - a) * (s - b) * (s - c));
+        }
+
+        private static double Terulet(int alap, int magassag)
+        {
+            return alap * magassag / 2;
         }
 
         private static int Kerulet(int a, int b, int c)
