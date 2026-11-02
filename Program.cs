@@ -86,6 +86,14 @@ namespace HaromszogTerKer
 
         private static double Terulet(int alap, int magassag)
         {
+            if (alap <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(alap), "Az alap értéke csak pozitív szám lehet!");
+            }
+            if (magassag <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(magassag), "A magasság értéke csak pozitív szám lehet!");
+            }
             return alap * magassag / 2;
         }
 
