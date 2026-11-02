@@ -42,6 +42,11 @@ namespace HaromszogTerKer
             int alap = 12;
             int mag = 13;
             Megjelenites($"alap: {alap}, mag.: {mag}, ter.: {Terulet(alap, mag)}\n");
+
+            double oldal1 = 5.0;
+            double oldal2 = 6.0;
+            double szog = 30.0;
+            Megjelenites($"a: {oldal1}, b: {oldal2}, gamma: {szog}°, ter.: {Terulet(oldal1, oldal2, szog):F2}\n");
         }
 
         static bool SzerkeszthetoHaromSzog(int a, int b, int c)
@@ -71,6 +76,7 @@ namespace HaromszogTerKer
         /* Terulet függvény túlterhelések:
          * Terulet(int, int, int)
          * Terulet(int, int)
+         * Terulet(double, double, double)
          */
         private static double Terulet(int a, int b, int c)
         {
@@ -81,6 +87,16 @@ namespace HaromszogTerKer
         private static double Terulet(int alap, int magassag)
         {
             return alap * magassag / 2;
+        }
+
+        private static double Terulet(double a, double b, double gammaSzog)
+        {
+            if (gammaSzog <= 0 || gammaSzog >= 180)
+            {
+                throw new ArgumentOutOfRangeException(nameof(gammaSzog), "A háromszög belső szöge 0 és 180 fok közé kell essen!");
+            }
+            double gammaRadian = gammaSzog * Math.PI / 180.0;
+            return (a * b * Math.Sin(gammaRadian)) / 2.0;
         }
 
         private static int Kerulet(int a, int b, int c)
