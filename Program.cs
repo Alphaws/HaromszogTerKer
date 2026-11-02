@@ -61,6 +61,8 @@ namespace HaromszogTerKer
                 int b = EgeszSzamBekeres("Kérem a b oldalt: ");
                 int c = EgeszSzamBekeres("Kérem a c oldalt: ");
 
+                EllenorizHaromszog(a, b, c);
+
                 int k = Kerulet(a, b, c);
                 double t = Terulet(a, b, c);
                 Megjelenites($"A {a},{b},{c} oldalú hsz.\n\tterülete: {t}\n\tkerülete: {k}\n");
@@ -85,7 +87,17 @@ namespace HaromszogTerKer
             }
         }
 
-        
+        private static void EllenorizHaromszog(int a, int b, int c)
+        {
+            if (!haromOldalPozitiv(a, b, c))
+            {
+                throw new ArgumentOutOfRangeException("Az oldalaknak pozitív számoknak kell lenniük.");
+            }
+            if (!SzerkeszthetoHaromSzog(a, b, c))
+            {
+                throw new ArgumentException("A háromszög nem szerkeszthető a megadott oldalakkal. Bármely két oldal összegének nagyobbnak kell lennie a harmadiknál!");
+            }
+        }
 
         static bool SzerkeszthetoHaromSzog(int a, int b, int c)
         {
@@ -103,7 +115,8 @@ namespace HaromszogTerKer
 
         private static bool PozitivSzam(int szam)
         {
-            return (szam >= 0);
+            // Szerintem a pozitív szám az, ami nagyobb, mint 0.
+            return (szam > 0);
         }
 
         private static void Megjelenites(string adat)
