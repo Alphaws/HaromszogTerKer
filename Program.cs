@@ -12,6 +12,12 @@ namespace HaromszogTerKer
      * try/catch szerepe / használata 
      * adatok bekérése
      * típus kényszerítések értelmezése:
+     * Az m(int, double) első paramétere int, a második double. Az m(3, 5)
+     * azért hívható, mert a 3 és az 5 alapértelmezés szerint int literál,
+     * és az int automatikusan, adatvesztés nélkül double típusra alakítható.
+     * Az m(3.0, PI) viszont nem hívható, mert a 3.0 double, amelyet a C#
+     * nem alakít automatikusan int-té: a tizedesrész elveszhet. Ilyenkor
+     * explicit konverzió kell, például: m((int)3.0, PI).
        pl.: m(int, double) 
        miért hívható így is:m(3, 5) 
        és nem hívható:m(3.0, PI)
