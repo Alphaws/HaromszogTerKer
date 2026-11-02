@@ -2,6 +2,22 @@
 
 namespace HaromszogTerKer
 {
+    /* HF.:
+     * minden módosítást kommitolj!
+     * írj másik terület túlterhelést
+     * az alapot és a magasságot is ellenőrizd!
+     * az ellenőrzést bontsd 2 részre, legyen eltérő a kivételek szövege!
+     * 
+     * EXTRA (AI segítséggel): 
+     * try/catch szerepe / használata 
+     * adatok bekérése
+     * típus kényszerítések értelmezése:
+       pl.: m(int, double) 
+       miért hívható így is:m(3, 5) 
+       és nem hívható:m(3.0, PI)
+     */
+
+
     internal class Program
     {
         static void Main(string[] args)
