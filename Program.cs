@@ -47,7 +47,45 @@ namespace HaromszogTerKer
             double oldal2 = 6.0;
             double szog = 30.0;
             Megjelenites($"a: {oldal1}, b: {oldal2}, gamma: {szog}°, ter.: {Terulet(oldal1, oldal2, szog):F2}\n");
+            
+            // Adatok bekérése, hibák elelnőrzése, kivételek kezelése
+            AdatBekeres();
+
         }
+
+        private static void AdatBekeres()
+        {
+            try
+            {
+                int a = EgeszSzamBekeres("Kérem az a oldalt: ");
+                int b = EgeszSzamBekeres("Kérem a b oldalt: ");
+                int c = EgeszSzamBekeres("Kérem a c oldalt: ");
+
+                int k = Kerulet(a, b, c);
+                double t = Terulet(a, b, c);
+                Megjelenites($"A {a},{b},{c} oldalú hsz.\n\tterülete: {t}\n\tkerülete: {k}\n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Hiba történt az adatbekérés során: {ex.Message}");
+            }
+        }
+
+        private static int EgeszSzamBekeres(string uzenet)
+        {
+            while (true)
+            {
+                Console.Write(uzenet);
+                string? input = Console.ReadLine();
+                if (int.TryParse(input, out int szam))
+                {
+                    return szam;
+                }
+                Console.WriteLine("Érvénytelen bemenet! Kérlek egész számot adj meg.");
+            }
+        }
+
+        
 
         static bool SzerkeszthetoHaromSzog(int a, int b, int c)
         {
